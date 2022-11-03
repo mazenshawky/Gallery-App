@@ -23,18 +23,10 @@ ThemeData getApplicationTheme(){
       headlineLarge: getBoldStyle(fontFamily: FontConstants.segoeUIFontFamily, fontSize: FontSize.s50, color: ColorManager.darkGrey),
       headlineMedium: getBoldStyle(fontFamily: FontConstants.segoeUIFontFamily, fontSize: FontSize.s30, color: ColorManager.darkGrey),
       headlineSmall: getBoldStyle(fontFamily: FontConstants.segoeUIFontFamily, fontSize: FontSize.s30, color: ColorManager.white),
-    //   labelLarge: getSemiBoldStyle(fontSize: FontSize.s24, color: ColorManager.black),
-    //   labelMedium: getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.black),
-    //   labelSmall: getSemiBoldStyle(fontSize: FontSize.s14, color: ColorManager.primary),
-    //   titleMedium: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.lightWhite),
-    //   titleLarge: getSemiBoldStyle(fontSize: FontSize.s16, color: ColorManager.primary),
-    //   titleSmall: getMediumStyle(fontSize: FontSize.s16, color: ColorManager.grey),
-    //   bodyLarge: getSemiBoldStyle(fontSize: FontSize.s18, color: ColorManager.darkGrey),
+      labelLarge: getSemiBoldStyle(fontFamily: FontConstants.balooThambi2FontFamily, fontSize: FontSize.s32, color: ColorManager.darkGrey),
+      labelMedium: getSemiBoldStyle(fontFamily: FontConstants.balooThambi2FontFamily, fontSize: FontSize.s20, color: ColorManager.darkGrey),
+      bodyLarge: getBoldStyle(fontFamily: FontConstants.segoeUIFontFamily, fontSize: FontSize.s27, color: ColorManager.darkGrey),
       bodyMedium: getSemiBoldStyle(fontFamily: FontConstants.segoeUIFontFamily, fontSize: FontSize.s16, color: ColorManager.darkGrey),
-    //   bodySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.black),
-    //   displayLarge: getBoldStyle(fontSize: FontSize.s20, color: ColorManager.black),
-    //   displayMedium: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.primary),
-    //   displaySmall: getMediumStyle(fontSize: FontSize.s14, color: ColorManager.grey),
     ),
 
     // input decoration theme(text form field)
@@ -43,7 +35,7 @@ ThemeData getApplicationTheme(){
       fillColor: ColorManager.white,
       contentPadding: const EdgeInsets.only(top: AppPadding.p8, bottom: AppPadding.p8, left: AppPadding.p20),
       hintStyle: getSemiBoldStyle(fontFamily: FontConstants.segoeUIFontFamily, fontSize: FontSize.s16, color: ColorManager.grey),
-      errorStyle: getSemiBoldStyle(fontFamily: FontConstants.balooThambi2FontFamily, color: ColorManager.error),
+      errorStyle: getSemiBoldStyle(fontFamily: FontConstants.balooThambi2FontFamily, color: ColorManager.red),
 
       // enabled border style
       enabledBorder: const OutlineInputBorder(

@@ -72,7 +72,7 @@ class _LoginViewState extends State<LoginView> {
   Widget _getBackground(Size size){
     return SizedBox(
       height: size.height,
-      child: Image.asset(ImageAssets.background, fit: BoxFit.fitHeight),
+      child: Image.asset(ImageAssets.loginBackground, fit: BoxFit.fitHeight),
     );
   }
 
@@ -94,7 +94,7 @@ class _LoginViewState extends State<LoginView> {
           Expanded(
             flex: 2,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(AppSize.s32),
+              borderRadius: BorderRadius.circular(size.width * .08),
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaY: AppSize.s25, sigmaX: AppSize.s25),
                 child: SizedBox(

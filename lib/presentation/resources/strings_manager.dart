@@ -9,4 +9,8 @@ class AppStrings {
   static const invalidPassword = "Password should be at least 6 chars";
   static const logOut = "log out";
   static const welcome = "Welcome";
+  static const welcomeMina = "Welcome\nMina";
+  static const upload = "upload";
+  static const gallery = "Gallery";
+  static const camera = "Camera";
 }

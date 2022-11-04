@@ -15,3 +15,11 @@ class Authentication{
 
   Authentication(this.user, this.token);
 }
+
+class Image{
+  String status;
+  List<dynamic> data;
+  String message;
+
+  Image(this.status, this.data, this.message);
+}

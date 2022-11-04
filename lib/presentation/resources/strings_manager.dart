@@ -16,4 +16,5 @@ class AppStrings {
   static const String noInternetError = "No Internet. Please check your connection and try again";
   static const String loginError = "Incorrect Details. Please try again";
   static const String defaultError = "Something went wrong. Please try again";
+  static const String uploadError = "The given data was invalid. Please try again";
 }

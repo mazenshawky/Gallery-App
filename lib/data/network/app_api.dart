@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 
@@ -13,4 +15,8 @@ abstract class AppServiceClient {
   @POST("/auth/login")
   Future<AuthenticationResponse> login(
       @Field("email") String email, @Field("password") String password);
+
+  @POST("/upload")
+  Future<UploadResponse> uploadImage(
+      @Part(name: "img") File image);
 }

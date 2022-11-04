@@ -40,3 +40,17 @@ Map<String, dynamic> _$AuthenticationResponseToJson(
       'user': instance.user,
       'token': instance.token,
     };
+
+UploadResponse _$UploadResponseFromJson(Map<String, dynamic> json) =>
+    UploadResponse(
+      json['status'] as String?,
+      json['data'] as List<dynamic>?,
+      json['message'] as String?,
+    );
+
+Map<String, dynamic> _$UploadResponseToJson(UploadResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'data': instance.data,
+      'message': instance.message,
+    };

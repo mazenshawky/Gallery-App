@@ -1,8 +1,10 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gallery_app/presentation/resources/assets_manager.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
@@ -11,6 +13,7 @@ import '../../resources/color_manager.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
+import '../viewmodel/home_viewmodel.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -20,7 +23,19 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  final UploadViewModel _viewModel = instance<UploadViewModel>();
+  final ImagePicker _imagePicker = instance<ImagePicker>();
   final AppPreferences _appPreferences = instance<AppPreferences>();
+
+  _bind(){
+    _viewModel.start();
+  }
+
+  @override
+  void initState() {
+    _bind();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -216,7 +231,9 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      _imageFromGallery();
+                    },
                     child: Container(
                       width: size.width * .47,
                       height: size.height * .07,
@@ -241,7 +258,9 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   SizedBox(height: size.height * .05),
                   InkWell(
-                    onTap: (){},
+                    onTap: (){
+                      _imageFromCamera();
+                    },
                     child: Container(
                       width: size.width * .47,
                       height: size.height * .07,
@@ -273,8 +292,26 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
+  _imageFromGallery()async{
+    var image = await _imagePicker.pickImage(source: ImageSource.gallery);
+    _viewModel.setImage(File(image?.path ?? ""));
+    _viewModel.upload();
+  }
+
+  _imageFromCamera()async {
+    var image = await _imagePicker.pickImage(source: ImageSource.camera);
+    _viewModel.setImage(File(image?.path ?? ""));
+    _viewModel.upload();
+  }
+
   _logout(){
     _appPreferences.logout();
     Navigator.pushReplacementNamed(context, Routes.loginRoute);
+  }
+
+  @override
+  void dispose() {
+    _viewModel.dispose();
+    super.dispose();
   }
 }

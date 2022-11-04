@@ -43,3 +43,22 @@ class AuthenticationResponse {
 // to json
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }
+
+@JsonSerializable()
+class UploadResponse {
+  @JsonKey(name: "status")
+  String? status;
+  @JsonKey(name: "data")
+  List<dynamic>? data;
+  @JsonKey(name: "message")
+  String? message;
+
+  UploadResponse(this.status, this.data, this.message);
+
+  // from json
+  factory UploadResponse.fromJson(Map<String, dynamic> json) =>
+      _$UploadResponseFromJson(json);
+
+// to json
+  Map<String, dynamic> toJson() => _$UploadResponseToJson(this);
+}

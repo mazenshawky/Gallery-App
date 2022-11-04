@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:gallery_app/app/constants.dart';
+
 import '../../../domain/usecase/login_usecase.dart';
 import '../../common/freezed_data_classes.dart';
 import '../../common/toast.dart';
@@ -48,10 +50,10 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
     LoginUseCaseInput(loginObject.email, loginObject.password)))
         .fold(
     (failure) => {
-
     showToast(text: failure.errorMessage)
     }, (data) {
-    isUserLoggedInSuccessfullyStreamController.add(true);
+      Constants.token = data.token;
+      isUserLoggedInSuccessfullyStreamController.add(true);
     });
   }
 

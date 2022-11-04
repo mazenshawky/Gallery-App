@@ -148,3 +148,120 @@ abstract class _LoginObject implements LoginObject {
   _$$_LoginObjectCopyWith<_$_LoginObject> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$UploadObject {
+  File get image => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UploadObjectCopyWith<UploadObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UploadObjectCopyWith<$Res> {
+  factory $UploadObjectCopyWith(
+          UploadObject value, $Res Function(UploadObject) then) =
+      _$UploadObjectCopyWithImpl<$Res, UploadObject>;
+  @useResult
+  $Res call({File image});
+}
+
+/// @nodoc
+class _$UploadObjectCopyWithImpl<$Res, $Val extends UploadObject>
+    implements $UploadObjectCopyWith<$Res> {
+  _$UploadObjectCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = null,
+  }) {
+    return _then(_value.copyWith(
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_UploadObjectCopyWith<$Res>
+    implements $UploadObjectCopyWith<$Res> {
+  factory _$$_UploadObjectCopyWith(
+          _$_UploadObject value, $Res Function(_$_UploadObject) then) =
+      __$$_UploadObjectCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({File image});
+}
+
+/// @nodoc
+class __$$_UploadObjectCopyWithImpl<$Res>
+    extends _$UploadObjectCopyWithImpl<$Res, _$_UploadObject>
+    implements _$$_UploadObjectCopyWith<$Res> {
+  __$$_UploadObjectCopyWithImpl(
+      _$_UploadObject _value, $Res Function(_$_UploadObject) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? image = null,
+  }) {
+    return _then(_$_UploadObject(
+      null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UploadObject implements _UploadObject {
+  _$_UploadObject(this.image);
+
+  @override
+  final File image;
+
+  @override
+  String toString() {
+    return 'UploadObject(image: $image)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UploadObject &&
+            (identical(other.image, image) || other.image == image));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, image);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UploadObjectCopyWith<_$_UploadObject> get copyWith =>
+      __$$_UploadObjectCopyWithImpl<_$_UploadObject>(this, _$identity);
+}
+
+abstract class _UploadObject implements UploadObject {
+  factory _UploadObject(final File image) = _$_UploadObject;
+
+  @override
+  File get image;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UploadObjectCopyWith<_$_UploadObject> get copyWith =>
+      throw _privateConstructorUsedError;
+}

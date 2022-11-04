@@ -37,4 +37,24 @@ class RepositoryImpl implements Repository {
       return Left(Failure(AppStrings.noInternetError));
     }
   }
+
+  @override
+  Future<Either<Failure, Image>> uploadImage(
+      UploadRequest uploadRequest) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.uploadImage(uploadRequest);
+
+        if (response.status != null) {
+          return Right(response.toDomain());
+        } else {
+          return Left(Failure(AppStrings.uploadError));
+        }
+      } catch (error) {
+        return Left(Failure(AppStrings.defaultError));
+      }
+    } else {
+      return Left(Failure(AppStrings.noInternetError));
+    }
+  }
 }

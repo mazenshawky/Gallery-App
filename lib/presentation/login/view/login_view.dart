@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:gallery_app/presentation/resources/assets_manager.dart';
 
 import '../../../app/app_prefs.dart';
+import '../../../app/constants.dart';
 import '../../../app/di.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/routes_manager.dart';
@@ -36,6 +37,7 @@ class _LoginViewState extends State<LoginView> {
       if(isLoggedIn){
         SchedulerBinding.instance.addPostFrameCallback((_) {
           _appPreferences.setUserLoggedIn();
+          _appPreferences.setToken(Constants.token);
           Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
         });
       }

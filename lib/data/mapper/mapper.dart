@@ -23,12 +23,24 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
 }
 
 extension UploadResponseMapper on UploadResponse? {
-  Image toDomain() {
+  ImageObject toDomain() {
     List<dynamic> data = (this?.data?.map((e) => e.orEmpty() ?? Constants.empty) ?? const Iterable.empty()).cast<dynamic>().toList();
-    return Image(
+    return ImageObject(
         this?.status.orEmpty() ?? Constants.empty,
         data,
         this?.message.orEmpty() ?? Constants.empty
     );
+  }
+}
+
+extension GalleryResponseMapper on GalleryResponse? {
+  Gallery toDomain() {
+    List<String> images = (this?.data?.images?.map((e) => e.orEmpty()) ?? const Iterable.empty()).cast<String>().toList();
+
+    var data = Data(images);
+    return Gallery(
+        this?.status.orEmpty() ?? Constants.empty,
+        data,
+        this?.message.orEmpty() ?? Constants.empty);
   }
 }

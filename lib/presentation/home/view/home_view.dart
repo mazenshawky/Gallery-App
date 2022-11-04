@@ -2,11 +2,14 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gallery_app/domain/model/models.dart';
 import 'package:gallery_app/presentation/resources/assets_manager.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../app/app_prefs.dart';
+import '../../../app/constants.dart';
 import '../../../app/di.dart';
 import '../../common/my_behavior.dart';
 import '../../resources/color_manager.dart';
@@ -28,7 +31,19 @@ class _HomeViewState extends State<HomeView> {
   final AppPreferences _appPreferences = instance<AppPreferences>();
 
   _bind(){
+    _appPreferences.getToken().then((value) {
+      Constants.token = value;
+    });
     _viewModel.start();
+    _viewModel.isImageUploadedSuccessfullyStreamController.stream.listen((isUploaded) {
+      if(isUploaded){
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          setState(() {
+            _viewModel.getGallery();
+          });
+        });
+      }
+    });
   }
 
   @override
@@ -161,23 +176,31 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
                 SizedBox(height: size.height * .012),
-                Expanded(
-                  child: ScrollConfiguration(
-                    behavior: MyBehavior(),
-                    child: SingleChildScrollView(
-                      child: GridView.count(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        crossAxisCount: 3,
-                        mainAxisSpacing: size.width * .05,
-                        crossAxisSpacing: size.width * .05,
-                        children: List.generate(
-                          21,
-                              (index) => buildGridProduct(size),
+                StreamBuilder<Gallery>(
+                  stream: _viewModel.outputGallery,
+                  builder: (context, snapshot){
+                    if(snapshot.data != null){
+                      return Expanded(
+                        child: ScrollConfiguration(
+                          behavior: MyBehavior(),
+                          child: SingleChildScrollView(
+                            child: GridView.count(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              crossAxisCount: 3,
+                              mainAxisSpacing: size.width * .05,
+                              crossAxisSpacing: size.width * .05,
+                              children: List.generate(
+                                snapshot.data!.data!.images.length,
+                                    (index) => buildGridProduct(size, snapshot.data!.data!.images, index),
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
+                      );
+                    }
+                    return const Center(child: CircularProgressIndicator());
+                  },
                 ),
               ],
             ),
@@ -186,13 +209,13 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-  Widget buildGridProduct(Size size) => Container(
+  Widget buildGridProduct(Size size, List<String> images, int index) => Container(
     decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorManager.home1,
         borderRadius: BorderRadius.circular(size.width * .05),
-        image: const DecorationImage(
+        image: DecorationImage(
           fit: BoxFit.cover,
-          image: AssetImage(ImageAssets.gallery),
+          image: NetworkImage(images[index]),
         )
     ),
   );
@@ -296,6 +319,7 @@ class _HomeViewState extends State<HomeView> {
     var image = await _imagePicker.pickImage(source: ImageSource.gallery);
     _viewModel.setImage(File(image?.path ?? ""));
     _viewModel.upload();
+
   }
 
   _imageFromCamera()async {

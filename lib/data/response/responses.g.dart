@@ -54,3 +54,28 @@ Map<String, dynamic> _$UploadResponseToJson(UploadResponse instance) =>
       'data': instance.data,
       'message': instance.message,
     };
+
+DataResponse _$DataResponseFromJson(Map<String, dynamic> json) => DataResponse(
+      (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
+
+Map<String, dynamic> _$DataResponseToJson(DataResponse instance) =>
+    <String, dynamic>{
+      'images': instance.images,
+    };
+
+GalleryResponse _$GalleryResponseFromJson(Map<String, dynamic> json) =>
+    GalleryResponse(
+      json['status'] as String?,
+      json['data'] == null
+          ? null
+          : DataResponse.fromJson(json['data'] as Map<String, dynamic>),
+      json['message'] as String?,
+    );
+
+Map<String, dynamic> _$GalleryResponseToJson(GalleryResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'data': instance.data,
+      'message': instance.message,
+    };

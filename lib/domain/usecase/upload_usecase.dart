@@ -8,13 +8,13 @@ import 'package:dartz/dartz.dart';
 import '../../data/network/failure.dart';
 import '../repository/repository.dart';
 
-class UploadUseCase implements BaseUseCase<UploadUseCaseInput, Image> {
+class UploadUseCase implements BaseUseCase<UploadUseCaseInput, ImageObject> {
   final Repository _repository;
 
   UploadUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Image>> execute(
+  Future<Either<Failure, ImageObject>> execute(
       UploadUseCaseInput input) async {
     return await _repository.uploadImage(UploadRequest(input.image));
   }

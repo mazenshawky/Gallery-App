@@ -6,6 +6,8 @@ abstract class RemoteDataSource {
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
 
   Future<UploadResponse> uploadImage(UploadRequest uploadRequest);
+
+  Future<GalleryResponse> getGallery();
 }
 
 class RemoteDataSourceImpl implements RemoteDataSource {
@@ -21,5 +23,10 @@ class RemoteDataSourceImpl implements RemoteDataSource {
   @override
   Future<UploadResponse> uploadImage(UploadRequest uploadRequest) async {
     return await _appServiceClient.uploadImage(uploadRequest.image);
+  }
+
+  @override
+  Future<GalleryResponse> getGallery() async {
+    return await _appServiceClient.getGallery();
   }
 }

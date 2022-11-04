@@ -10,6 +10,7 @@ import '../data/network/dio_factory.dart';
 import '../data/network/network_info.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
+import '../domain/usecase/gallery_usecase.dart';
 import '../domain/usecase/login_usecase.dart';
 import '../domain/usecase/upload_usecase.dart';
 import '../presentation/home/viewmodel/home_viewmodel.dart';
@@ -48,7 +49,8 @@ initLoginModule(){
 initHomeModule() {
   if(!GetIt.I.isRegistered<UploadUseCase>()){
     instance.registerFactory<UploadUseCase>(() => UploadUseCase(instance()));
-    instance.registerFactory<UploadViewModel>(() => UploadViewModel(instance()));
+    instance.registerFactory<GalleryUseCase>(() => GalleryUseCase(instance()));
+    instance.registerFactory<UploadViewModel>(() => UploadViewModel(instance(), instance()));
     instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }

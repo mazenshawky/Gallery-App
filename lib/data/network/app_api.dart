@@ -19,4 +19,7 @@ abstract class AppServiceClient {
   @POST("/upload")
   Future<UploadResponse> uploadImage(
       @Part(name: "img") File image);
+
+  @GET("/my-gallery")
+  Future<GalleryResponse> getGallery();
 }

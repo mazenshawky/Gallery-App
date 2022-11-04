@@ -7,5 +7,7 @@ import '../model/models.dart';
 abstract class Repository {
   Future<Either<Failure, Authentication>> login(LoginRequest loginRequest);
 
-  Future<Either<Failure, Image>> uploadImage(UploadRequest uploadRequest);
+  Future<Either<Failure, ImageObject>> uploadImage(UploadRequest uploadRequest);
+
+  Future<Either<Failure, Gallery>> getGallery();
 }

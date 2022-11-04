@@ -16,10 +16,24 @@ class Authentication{
   Authentication(this.user, this.token);
 }
 
-class Image{
+class ImageObject{
   String status;
   List<dynamic> data;
   String message;
 
-  Image(this.status, this.data, this.message);
+  ImageObject(this.status, this.data, this.message);
+}
+
+class Data{
+  List<String> images;
+
+  Data(this.images);
+}
+
+class Gallery{
+  String status;
+  Data? data;
+  String message;
+
+  Gallery(this.status, this.data, this.message);
 }

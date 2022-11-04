@@ -39,7 +39,7 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, Image>> uploadImage(
+  Future<Either<Failure, ImageObject>> uploadImage(
       UploadRequest uploadRequest) async {
     if (await _networkInfo.isConnected) {
       try {
@@ -49,6 +49,25 @@ class RepositoryImpl implements Repository {
           return Right(response.toDomain());
         } else {
           return Left(Failure(AppStrings.uploadError));
+        }
+      } catch (error) {
+        return Left(Failure(AppStrings.defaultError));
+      }
+    } else {
+      return Left(Failure(AppStrings.noInternetError));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Gallery>> getGallery() async{
+    if (await _networkInfo.isConnected) {
+      try {
+        final response = await _remoteDataSource.getGallery();
+
+        if (response.status != null) {
+          return Right(response.toDomain());
+        } else {
+          return Left(Failure(AppStrings.defaultError));
         }
       } catch (error) {
         return Left(Failure(AppStrings.defaultError));

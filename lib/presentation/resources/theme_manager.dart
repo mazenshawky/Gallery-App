@@ -7,6 +7,8 @@ import 'color_manager.dart';
 
 ThemeData getApplicationTheme(){
   return ThemeData(
+    progressIndicatorTheme: ProgressIndicatorThemeData(color: ColorManager.home1),
+
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

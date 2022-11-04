@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import '../../../domain/usecase/login_usecase.dart';
 import '../../common/freezed_data_classes.dart';
+import '../../common/toast.dart';
 
 class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   final StreamController _emailStreamController = StreamController<String>.broadcast();
@@ -14,6 +16,10 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   final StreamController isUserLoggedInSuccessfullyStreamController = StreamController<bool>.broadcast();
 
   var loginObject = LoginObject("", "");
+
+  final LoginUseCase _loginUseCase;
+
+  LoginViewModel(this._loginUseCase);
 
   // inputs
   void dispose(){
@@ -37,8 +43,16 @@ class LoginViewModel extends LoginViewModelInputs with LoginViewModelOutputs{
   Sink get inputChangePasswordVisibility => _passwordVisibilityStreamController.sink;
 
   @override
-  login() {
+  login() async{
+    (await _loginUseCase.execute(
+    LoginUseCaseInput(loginObject.email, loginObject.password)))
+        .fold(
+    (failure) => {
+
+    showToast(text: failure.errorMessage)
+    }, (data) {
     isUserLoggedInSuccessfullyStreamController.add(true);
+    });
   }
 
   @override

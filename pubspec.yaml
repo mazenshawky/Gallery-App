@@ -40,6 +40,12 @@ dependencies:
   freezed: ^2.2.0
   retrofit: ^3.0.1+1
   image_picker: ^0.8.5+3
+  dio: ^4.0.6
+  json_serializable: ^6.3.2
+  dartz: ^0.10.1
+  internet_connection_checker: ^0.0.1+4
+  pretty_dio_logger: ^1.2.0-beta-1
+  fluttertoast: ^8.0.9
 
 
 dev_dependencies:

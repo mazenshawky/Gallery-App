@@ -13,4 +13,7 @@ class AppStrings {
   static const upload = "upload";
   static const gallery = "Gallery";
   static const camera = "Camera";
+  static const String noInternetError = "No Internet. Please check your connection and try again";
+  static const String loginError = "Incorrect Details. Please try again";
+  static const String defaultError = "Something went wrong. Please try again";
 }

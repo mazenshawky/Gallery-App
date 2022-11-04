@@ -6,7 +6,7 @@ import 'package:gallery_app/presentation/resources/assets_manager.dart';
 
 import '../../../app/app_prefs.dart';
 import '../../../app/di.dart';
-import '../../login/view/my_behavior.dart';
+import '../../common/my_behavior.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';

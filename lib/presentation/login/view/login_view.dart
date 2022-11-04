@@ -12,7 +12,7 @@ import '../../resources/routes_manager.dart';
 import '../../resources/strings_manager.dart';
 import '../../resources/values_manager.dart';
 import '../viewmodel/login_viewmodel.dart';
-import 'my_behavior.dart';
+import '../../common/my_behavior.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
